@@ -3,7 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Phone, MapPin, Clock, Mail, Star, Truck, Shield, Package, Users } from "lucide-react";
+import { Phone, MapPin, Clock, Mail, Star, Truck, Shield, Package, Users, CheckCircle } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 import heroImage from "@/assets/hero-packaging.jpg";
 import strappingImage from "@/assets/strapping-plastic.jpg";
@@ -14,6 +20,179 @@ import foamImage from "@/assets/ep-foam.jpg";
 import bubbleImage from "@/assets/bubble-sheet.jpg";
 import cornerImage from "@/assets/foam-corner.jpg";
 import clothImage from "@/assets/hasion-cloth.jpg";
+
+const contactFormSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().optional(),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
+const ContactForm = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xdkovdpd", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || "Not provided",
+          message: data.message,
+          _replyto: data.email,
+          _subject: "New Contact Form Submission - Shubham Agencies",
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        form.reset();
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for contacting us. We'll get back to you soon.",
+        });
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error sending message",
+        description: "Please try again or contact us directly at 98291-49536",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <Card className="border-0 shadow-lg">
+        <CardContent className="p-8 text-center">
+          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+          <h3 className="text-2xl font-semibold text-primary mb-2">Message Sent!</h3>
+          <p className="text-muted-foreground mb-6">
+            Thank you for contacting us. We'll get back to you within 24 hours.
+          </p>
+          <Button 
+            variant="outline" 
+            onClick={() => setSubmitted(false)}
+          >
+            Send Another Message
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card className="border-0 shadow-lg">
+      <CardHeader>
+        <CardTitle className="text-2xl text-primary">Send us a Message</CardTitle>
+        <CardDescription>
+          Fill out the form below and we'll get back to you soon
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your Phone Number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email *</FormLabel>
+                  <FormControl>
+                    <Input type="email" placeholder="Your Email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Message *</FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="Tell us about your packaging requirements..."
+                      rows={4}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <Button 
+              type="submit" 
+              variant="cta" 
+              size="lg" 
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              <Mail className="mr-2 h-5 w-5" />
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
 
 const Index = () => {
   const products = [
@@ -274,41 +453,7 @@ const Index = () => {
             </div>
             
             {/* Contact Form */}
-            <Card className="border-0 shadow-lg">
-              <CardHeader>
-                <CardTitle className="text-2xl text-primary">Send us a Message</CardTitle>
-                <CardDescription>
-                  Fill out the form below and we'll get back to you soon
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Name</label>
-                    <Input placeholder="Your Name" />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">Phone</label>
-                    <Input placeholder="Your Phone Number" />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Email (Optional)</label>
-                  <Input type="email" placeholder="Your Email" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Message</label>
-                  <Textarea 
-                    placeholder="Tell us about your packaging requirements..."
-                    rows={4}
-                  />
-                </div>
-                <Button variant="cta" size="lg" className="w-full">
-                  <Mail className="mr-2 h-5 w-5" />
-                  Send Message
-                </Button>
-              </CardContent>
-            </Card>
+            <ContactForm />
           </div>
         </div>
       </section>
