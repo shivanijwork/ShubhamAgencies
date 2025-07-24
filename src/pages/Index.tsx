@@ -63,7 +63,7 @@ const Index = () => {
     {
       icon: <Truck className="h-8 w-8" />,
       title: "Fast Delivery in Jaipur",
-      description: "Quick and reliable delivery service across Jaipur and surrounding areas."
+      description: "Quick and reliable delivery service across Jaipur and other cities."
     },
     {
       icon: <Package className="h-8 w-8" />,
