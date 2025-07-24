@@ -252,7 +252,7 @@ const Index = () => {
               <div className="space-y-4">
                 <div className="rounded-lg overflow-hidden h-64 shadow-md">
                   <iframe
-                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dw901sw5a6wJNI&q=House+No.+1310,+1st+Crossing,+Baba+Harish+Chandra+Marg,+Chandpole+Bazar,+Jaipur,+Rajasthan+302001&zoom=16"
+                    src="https://maps.google.com/maps?q=House+No.+1310,+1st+Crossing,+Baba+Harish+Chandra+Marg,+Chandpole+Bazar,+Jaipur,+Rajasthan+302001&output=embed&z=16"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
