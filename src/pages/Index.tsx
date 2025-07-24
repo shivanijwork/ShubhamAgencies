@@ -249,17 +249,27 @@ const Index = () => {
               </div>
               
               {/* Google Maps Embed */}
-              <div className="rounded-lg overflow-hidden h-64 shadow-md">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.0123456789!2d75.8173611!3d26.9157694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db6c8b6c8b6c8%3A0x6c8b6c8b6c8b6c8!2sBaba%20Harish%20Chandra%20Marg%2C%20Chandpole%20Bazar%2C%20Jaipur%2C%20Rajasthan%20302001!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Shubham Agencies Location - Chandpole Bazar, Jaipur"
-                />
+              <div className="space-y-4">
+                <div className="rounded-lg overflow-hidden h-64 shadow-md">
+                  <iframe
+                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dw901sw5a6wJNI&q=House+No.+1310,+1st+Crossing,+Baba+Harish+Chandra+Marg,+Chandpole+Bazar,+Jaipur,+Rajasthan+302001&zoom=16"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Shubham Agencies - House No. 1310, 1st Crossing, Baba Harish Chandra Marg, Chandpole Bazar, Jaipur"
+                  />
+                </div>
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=House+No.+1310,+1st+Crossing,+Baba+Harish+Chandra+Marg,+Chandpole+Bazar,+Jaipur,+Rajasthan+302001`, '_blank')}
+                >
+                  <MapPin className="mr-2 h-4 w-4" />
+                  Get Directions
+                </Button>
               </div>
             </div>
             
