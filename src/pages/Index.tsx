@@ -49,35 +49,36 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("https://formspree.io/f/shubhamagencies1310@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          phone: data.phone || "Not provided",
-          message: data.message,
-          _replyto: data.email,
-          _subject: "New Contact Form Submission - Shubham Agencies",
-        }),
-      });
+      // Create mailto link with form data
+      const subject = encodeURIComponent("New Contact Form Submission - Shubham Agencies");
+      const body = encodeURIComponent(`
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || "Not provided"}
 
-      if (response.ok) {
+Message:
+${data.message}
+      `);
+      
+      const mailtoLink = `mailto:shubhamagencies1310@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Open default email client
+      window.location.href = mailtoLink;
+      
+      // Show success message after a brief delay
+      setTimeout(() => {
         setSubmitted(true);
         form.reset();
         toast({
-          title: "Message sent successfully!",
-          description: "Thank you for contacting us. We'll get back to you soon.",
+          title: "Email client opened!",
+          description: "Your default email application should now be open with the message pre-filled.",
         });
-      } else {
-        throw new Error("Failed to send message");
-      }
+      }, 500);
+      
     } catch (error) {
       toast({
-        title: "Error sending message",
-        description: "Please try again or contact us directly at 98291-49536",
+        title: "Error opening email client",
+        description: "Please contact us directly at 98291-49536 or shubhamagencies1310@gmail.com",
         variant: "destructive",
       });
     } finally {
