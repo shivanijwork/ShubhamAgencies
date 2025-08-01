@@ -17,7 +17,7 @@ import toolsImage from "@/assets/packing-tools.jpg";
 import tapeImage from "@/assets/tape-rolls.jpg";
 import thermocolImage from "@/assets/thermocol.jpg";
 import foamImage from "@/assets/ep-foam.jpg";
-import bubbleImage from "@/assets/bubble-sheet.jpg";
+import bubbleImage from "@/assets/bubble-sheet-black.jpg";
 import cornerImage from "@/assets/foam-corner.jpg";
 import clothImage from "@/assets/hasion-cloth.jpg";
 
