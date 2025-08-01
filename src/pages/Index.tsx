@@ -426,30 +426,6 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* Google Maps Embed */}
-              <div className="space-y-4">
-                <div className="rounded-lg overflow-hidden h-64 shadow-md">
-                  <iframe
-                    src="https://maps.google.com/maps?q=House+No.+1310,+1st+Crossing,+Baba+Harish+Chandra+Marg,+Chandpole+Bazar,+Jaipur,+Rajasthan+302001&output=embed&z=16"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen={true}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="Shubham Agencies - House No. 1310, 1st Crossing, Baba Harish Chandra Marg, Chandpole Bazar, Jaipur"
-                  />
-                </div>
-                <Button 
-                  variant="outline" 
-                  className="w-full"
-                  onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=House+No.+1310,+1st+Crossing,+Baba+Harish+Chandra+Marg,+Chandpole+Bazar,+Jaipur,+Rajasthan+302001`, '_blank')}
-                >
-                  <MapPin className="mr-2 h-4 w-4" />
-                  Get Directions
-                </Button>
-              </div>
             </div>
             
             {/* Contact Form */}
