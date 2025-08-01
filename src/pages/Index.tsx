@@ -15,7 +15,7 @@ import heroImage from "@/assets/hero-packaging.jpg";
 import strappingImage from "@/assets/strapping-plastic.jpg";
 import toolsImage from "@/assets/packing-tools.jpg";
 import tapeImage from "@/assets/tape-rolls.jpg";
-import thermocolImage from "@/assets/thermocol.jpg";
+import thermocolImage from "@/assets/thermocol-black.jpg";
 import foamImage from "@/assets/ep-foam.jpg";
 import bubbleImage from "@/assets/bubble-sheet-black.jpg";
 import cornerImage from "@/assets/foam-corner.jpg";
