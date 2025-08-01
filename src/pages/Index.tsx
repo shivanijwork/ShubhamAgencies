@@ -301,19 +301,27 @@ const Index = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-24 bg-gradient-to-b from-muted/20 to-muted/40">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-8 text-gradient-primary">About Shubham Agencies</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              With nearly 20 years of excellence in the packaging industry, Shubham Agencies has become a trusted name in Jaipur for industrial and export packing materials. Under the visionary leadership of <strong>Vinod Kumar Jain</strong>, we have built a strong reputation for delivering high-quality products, wholesale & reliable rates, and exceptional service.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-              Our commitment to customer satisfaction and dependable packaging solutions has made us the preferred partner for businesses across various industries. We provide comprehensive packaging solutions that ensure your products are protected and delivered safely, every single time.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Whether you are looking for bulk packaging materials at competitive rates or long-term reliable supply, Shubham Agencies is your go-to destination for packaging excellence.
-            </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-5xl font-bold mb-6 text-gradient-primary">About Shubham Agencies</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-8"></div>
+            </div>
+            
+            <div className="space-y-8 text-center">
+              <p className="text-xl text-foreground leading-relaxed max-w-4xl mx-auto font-medium">
+                With nearly 20 years of excellence in the packaging industry, Shubham Agencies has become a trusted name in Jaipur for industrial and export packing materials. Under the visionary leadership of <strong className="text-primary">Vinod Kumar Jain</strong>, we have built a strong reputation for delivering high-quality products, wholesale & reliable rates, and exceptional service.
+              </p>
+              
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Our commitment to customer satisfaction and dependable packaging solutions has made us the preferred partner for businesses across various industries. We provide comprehensive packaging solutions that ensure your products are protected and delivered safely, every single time.
+              </p>
+              
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                Whether you are looking for bulk packaging materials at competitive rates or long-term reliable supply, Shubham Agencies is your go-to destination for packaging excellence.
+              </p>
+            </div>
           </div>
         </div>
       </section>
