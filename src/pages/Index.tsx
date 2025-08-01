@@ -217,7 +217,7 @@ const Index = () => {
     },
     {
       icon: <Users className="h-8 w-8" />,
-      title: "15+ Years of Industry Experience",
+      title: "20+ Years of Industry Experience",
       description: "Trusted expertise in industrial and export packaging materials.",
     },
   ];
