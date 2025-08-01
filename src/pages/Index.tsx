@@ -94,7 +94,7 @@ const ContactForm = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormLabel>Phone *</FormLabel>
                     <FormControl>
                       <Input placeholder="Your Phone Number" {...field} name="phone" />
                     </FormControl>
